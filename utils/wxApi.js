@@ -4,7 +4,7 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:40:19
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-09-04 17:23:14
+ * @LastEditTime: 2020-09-04 17:36:40
  */
 
 
@@ -33,7 +33,7 @@ let MAXIMUN = 3;
 
 const request = async (options) => {
   if (count > MAXIMUN) return;
-  const { url, isLoading = false , isData = true } = options;
+  const { url, data, isLoading = false , isData = true } = options;
   const { host, title } = configs;
   const defaultOptions  =  await defaultOptions();
 
