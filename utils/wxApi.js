@@ -4,12 +4,12 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:40:19
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-09-04 17:36:40
+ * @LastEditTime: 2020-09-05 21:28:19
  */
 
 
 // 参数需要放到请求体中的方法
-const requestBody = ['POST', 'PUT', 'PATCH'];
+const requestBody = ['GET','HEAD','POST', 'PUT', 'PATCH'];
 
 // code成功状态码
 const API_SUCCESS_STATUS = 0;
@@ -17,7 +17,7 @@ const API_SUCCESS_STATUS = 0;
 // 鉴权失败状态码
 const API_AUTH_STATUS = [403];
 
-// 坚定开发环境------>host
+// 坚权开发环境------>host
 const DEBUG = app.globalData.DEBUG
 
 //  配置配置处理
@@ -31,21 +31,26 @@ let count = 0;
 let MAXIMUN = 3;
 
 
-const request = async (options) => {
+const request = async (options= {}) => {
   if (count > MAXIMUN) return;
-  const { url, data, isLoading = false , isData = true } = options;
+  const { url, params, isLoading = false , isData = true } = options;
   const { host, title } = configs;
   const defaultOptions  =  await defaultOptions();
 
   let stagingRes = null;
-
+  
   const configOptions = {
     url: `${url.includes(host) ? url : `https://${host}${url.startsWith('/') ? url : `/${url}`}`}`,
-    data,
     header:{ ...defaultOptions.header },
     method: (options.method || 'GET').toUpperCase(),
-  }
+  };
   
+  if(requestBody.includes(options.method.toUpperCase())){
+    configOptions.data = params;
+  } else if (typeof params === 'string') {
+    configOptions.url += params;
+  } 
+
   return new Promise((resolve, reject)=> {
     const startDate = Date.now();
     count <= 0 && isLoading && wx.showLoading({title})
@@ -161,7 +166,7 @@ const parseUrl = url => {
   if (!url || typeof url !== 'string') url = ''
   return /^http/.test(url)
       ? url
-      : config.host + url
+      : configs.host + url
 }
 
 
@@ -189,20 +194,20 @@ Object.keys(wx).map((key) => {
 const wxAPI = {
   setConfigs,
   request,
-  get: (url, data = {}, isLoading = false, isData = true) => {
+  get: (url, params = {}, isLoading = false, isData = true) => {
     const options = Object.create({
       url,
-      data,
+      params,
       isLoading,
       isData,
     })
     options.method = 'GET'
     return requset(options)
   },
-  post: (url, data = {}, isLoading = false, isData = true) => {
+  post: (url, params = {}, isLoading = false, isData = true) => {
     const options = Object.create({
       url,
-      data,
+      params,
       isLoading,
       isData,
     })
