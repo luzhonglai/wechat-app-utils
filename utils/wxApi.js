@@ -4,38 +4,59 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:40:19
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-09-05 21:28:19
+ * @LastEditTime: 2020-10-27 23:02:56
  */
 
-
+ console.log(wx)
 // 参数需要放到请求体中的方法
-const requestBody = ['GET','HEAD','POST', 'PUT', 'PATCH'];
+const requestBody = ['GET', 'HEAD', 'POST', 'PUT', 'PATCH']
 
 // code成功状态码
-const API_SUCCESS_STATUS = 0;
+const API_SUCCESS_STATUS = 0
 
 // 鉴权失败状态码
-const API_AUTH_STATUS = [403];
+const API_AUTH_STATUS = [403,101,404,500]
 
-// 坚权开发环境------>host
-const DEBUG = app.globalData.DEBUG
+// 开发环境 
+let DEBUG  = true
 
-//  配置配置处理
-let configs = { 
-  host: DEBUG ? 'https://wwww.baidu.com' : '',
+//  请求配置
+let configs = {
+  host: DEBUG ? 'https://wwww.baidu.com/db' : '',
+  apiKey: '',
   title: '加载中...',
 }
 
 // 记录请求发出几次
-let count = 0;
-let MAXIMUN = 3;
+let count = 0
+let MAXIMUN = 3
 
+// 请求默认参数
+const defaultOption = async () => {
+  let version = getApp().globalData.version
+  let defaultOptions = {}
+  let userInfo = await wx.getStorageSync('userInfo')
+  let address = getCurrentPages().pop() && getCurrentPages().pop().getSelectedAddress ? await getCurrentPages().pop().getSelectedAddress(true) : {}
+  defaultOptions.header = {
+      platform: 'wxapp',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      uid: userInfo && userInfo.uid ? userInfo.uid : '',
+      utoken: userInfo && userInfo.utoken ? userInfo.utoken : '',
+      province: address.province ? encodeURIComponent(address.province) : '',
+      city: address.city ? encodeURIComponent(address.city) : '',
+      district: address.district ? encodeURIComponent(address.district) : '',
+      APIVERSION: '2',
+      xcrole: (userInfo.level || userInfo.level == 0) ? userInfo.level : '',
+      version: version || ''
+  }
+  return defaultOptions
+}
 
 const request = async (options= {}) => {
   if (count > MAXIMUN) return;
-  const { url, params, isLoading = false , isData = true } = options;
+  const { url = '', params =  {}, isLoading = false , isData = true } = options;
   const { host, title } = configs;
-  const defaultOptions  =  await defaultOptions();
+  const defaultOptions  =  await defaultOption();
 
   let stagingRes = null;
   
@@ -84,14 +105,13 @@ const request = async (options= {}) => {
         } else {
             let error = new Error('服务器错误，请稍后再试');
             if (result.status == '5555') {
-                error.oss = '1'
+                error.oss =    '1'
             }
             error.errMsg = result.errMsg || result.errorMsg || '服务器错误，请稍后再试'
             error.status = result.status || 200
             error.message = result.errMsg || result.errorMsg || '服务器错误，请稍后再试'
             reject(error);
         }
-
       },
       fail: () => {
         let error = new Error('服务器错误，请稍后再试');
@@ -102,7 +122,7 @@ const request = async (options= {}) => {
       complete: () => {
         const poorDate = Date.now() - startDate;
         count--;
-        if (domain.indexOf('dh') < 0) {
+        if (host.indexOf('db') < 0) {
             console.group(
                 '%c当前请求详细信息： ',
                 'background:#000;color:#bada55'
@@ -156,19 +176,11 @@ const request = async (options= {}) => {
 });
 }
 
-// 默认请求头部参数
-const defaultOptions = async () =>{
-  
-}
-
 // 拼接url 检测是否存在项目名，如果存在不加，不存在自动补全
 const parseUrl = url => {
   if (!url || typeof url !== 'string') url = ''
-  return /^http/.test(url)
-      ? url
-      : configs.host + url
+  return /^http/.test(url) ? url : configs.host + url
 }
-
 
 const wxPromise = (wxFn) => (obj) =>
   new Promise((resolve, reject) => {
@@ -182,17 +194,14 @@ const wxPromise = (wxFn) => (obj) =>
     wxFn(obj)
   })
 
-Object.keys(wx).map((key) => {
-  if (!(wx in wxAPI)) {
-    Object.defineProperty(wxAPI, key, {
-      get: () => wxPromise(wx[key]),
-    })
-  }
-})
-
-
 const wxAPI = {
-  setConfigs,
+  setConfig(newConfig) {
+    configs = {
+      ...configs,
+      ...newConfig,
+    }
+    delete wxAPI.setConfig
+  },
   request,
   get: (url, params = {}, isLoading = false, isData = true) => {
     const options = Object.create({
@@ -202,7 +211,7 @@ const wxAPI = {
       isData,
     })
     options.method = 'GET'
-    return requset(options)
+    return request(options)
   },
   post: (url, params = {}, isLoading = false, isData = true) => {
     const options = Object.create({
@@ -212,8 +221,18 @@ const wxAPI = {
       isData,
     })
     options.method = 'POST'
-    return requset(options)
+    return request(options)
   },
 }
 
-export { wxAPI }
+
+// wx对象属性监听器
+Object.keys(wx).forEach((key) => {
+  if (!(key in wxAPI)) {
+    Object.defineProperty(wxAPI, key, {
+      get: () => wxPromise(wx[key]),
+    });
+  }
+});
+
+export default wxAPI

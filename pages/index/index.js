@@ -4,13 +4,13 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:37:05
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-09-05 21:22:07
+ * @LastEditTime: 2020-10-27 22:17:24
  */
 
 //index.js
 //获取应用实例
 const app = getApp()
-const wxApi = app.wxApi
+const wxAPI = app.wxAPI
 
 Page({
   data: {
@@ -20,13 +20,12 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
-    
+  bindViewTap() {
   },
-  onLoad: function () {
-    wxApi.
+  async onLoad() {
+    await wxAPI.get()
   },
-  getUserInfo: function(e) {
+  getUserInfo(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({

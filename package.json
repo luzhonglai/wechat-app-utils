@@ -1,0 +1,8 @@
+{
+  "name": "wechat_app",
+  "version": "1.0.0",
+  "description": "webapp ",
+  "repository": "https://github.com/zhonglai1996/WeChat_wxutils.git",
+  "author": "zhonglai",
+  "license": "MIT"
+}
