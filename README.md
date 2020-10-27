@@ -4,16 +4,16 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-02 16:13:52
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-10-27 10:12:51
+ * @LastEditTime: 2020-10-28 01:43:02
 -->
 
 # Wechat_app 常用工具
 
 ### utils: 工具类
 
-- wx.js: 常用微信方法
+- wx.js: 常用微信方法 改造内置API
 
-  - wxAPI 重写 wx-API 支持 Promise 回调
+  - wxAPI 重写 wx-API 支持 Promise 回调 
     - backSetData: 返回上级界面传值/调用方法
 
   ```
@@ -37,7 +37,10 @@
       
       })
   ```
-
+- util.js
+    - timingStorage: 定时缓存 新增
+    - getRouter: 获取页面路由 新增
+    
 - router.js: 公共路由方法
   - switchTab: tabBar 跳转方法
   - navigateTo: 非 tabBar 跳转方法
