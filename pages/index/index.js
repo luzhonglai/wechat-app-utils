@@ -4,7 +4,7 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:37:05
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-10-27 23:19:14
+ * @LastEditTime: 2020-10-28 01:19:25
  */
 
 //index.js
@@ -23,7 +23,10 @@ Page({
   bindViewTap() {
   },
   async onLoad() {
-    await wxAPI.get()
+    let res = await wxAPI.get('/api/config',{} ,true)
+    
+    console.log(res)
+    console.log(wx.getStorageSync('apiRes'))
   },
   getUserInfo(e) {
     console.log(e)

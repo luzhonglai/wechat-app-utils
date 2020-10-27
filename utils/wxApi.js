@@ -4,10 +4,11 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:40:19
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-10-27 23:02:56
+ * @LastEditTime: 2020-10-28 01:31:30
  */
 
- console.log(wx)
+import { getRoute } from './util'
+ 
 // 参数需要放到请求体中的方法
 const requestBody = ['GET', 'HEAD', 'POST', 'PUT', 'PATCH']
 
@@ -17,12 +18,15 @@ const API_SUCCESS_STATUS = 0
 // 鉴权失败状态码
 const API_AUTH_STATUS = [403,101,404,500]
 
+let AccountInfoSync = wx.getAccountInfoSync()
+// TODO  泛粉未绑定手机无邀请关系结算拦截状态码
+
 // 开发环境 
 let DEBUG  = true
 
 //  请求配置
 let configs = {
-  host: DEBUG ? 'https://wwww.baidu.com/db' : '',
+  host: DEBUG ? 'localhost:8811' : '',
   apiKey: '',
   title: '加载中...',
 }
@@ -53,15 +57,17 @@ const defaultOption = async () => {
 }
 
 const request = async (options= {}) => {
-  if (count > MAXIMUN) return;
-  const { url = '', params =  {}, isLoading = false , isData = true } = options;
-  const { host, title } = configs;
-  const defaultOptions  =  await defaultOption();
+  if (count > MAXIMUN) return
+  let url = options.url || ''
+  const {params =  {}, isLoading = false , isData = true } = options
+  const { host, title } = configs
+  const defaultOptions  =  await defaultOption()
+  const pageRouter = getRoute()
 
-  let stagingRes = null;
-  
+  let stagingRes = null
+  console.log(host, options)
   const configOptions = {
-    url: `${url.includes(host) ? url : `https://${host}${url.startsWith('/') ? url : `/${url}`}`}`,
+    url: `${url.includes('localhost:8811')? url : `http://${host}${url.startsWith('/') ? url : `/${url}`}`}`,
     header:{ ...defaultOptions.header },
     method: (options.method || 'GET').toUpperCase(),
   };
@@ -74,6 +80,7 @@ const request = async (options= {}) => {
 
   return new Promise((resolve, reject)=> {
     const startDate = Date.now();
+    console.log(count)
     count <= 0 && isLoading && wx.showLoading({title})
     count++;
     wx.request({
@@ -82,19 +89,18 @@ const request = async (options= {}) => {
         stagingRes = res;
         let result = res.data;
 
-        // 鉴权失败 403 
+        // 权限失败情况
         if (API_AUTH_STATUS.includes(result.status)) {
           let error = new Error('服务器错误，请稍后再试');
           if (result.status == '5555') {
               error.oss = '1'
           }
-          // 根据自己后台数据做提示
+          // 异常错误吗提示
           error.errMsg = result.errMsg || result.errorMsg || '服务器错误，请稍后再试'
           error.status = result.status
           error.message = result.errMsg || result.errorMsg || '服务器错误，请稍后再试'
           reject(error)
         }
-
         // TODO  条件抽离
         if (result.status == API_SUCCESS_STATUS || (result.status == 200 && result.code == 0)) {
             if (isData) {
@@ -105,7 +111,7 @@ const request = async (options= {}) => {
         } else {
             let error = new Error('服务器错误，请稍后再试');
             if (result.status == '5555') {
-                error.oss =    '1'
+                error.oss = '1'
             }
             error.errMsg = result.errMsg || result.errorMsg || '服务器错误，请稍后再试'
             error.status = result.status || 200
@@ -113,15 +119,19 @@ const request = async (options= {}) => {
             reject(error);
         }
       },
-      fail: () => {
+      
+      fail: (e) => {
         let error = new Error('服务器错误，请稍后再试');
         error.errMsg = '服务器错误，请稍后再试'
         error.message = '服务器错误，请稍后再试'
         reject(error)
       },
+
+
       complete: () => {
         const poorDate = Date.now() - startDate;
         count--;
+        // 开发日志调试信息
         if (host.indexOf('db') < 0) {
             console.group(
                 '%c当前请求详细信息： ',
@@ -146,6 +156,7 @@ const request = async (options= {}) => {
             );
             console.groupEnd();
         }
+
         let apiRes = wx.getStorageSync('apiRes')
         let reqList = apiRes ? (apiRes.length >= 20 ? [] : apiRes) : []
         stagingRes && stagingRes.data && reqList && reqList.push({
@@ -154,9 +165,12 @@ const request = async (options= {}) => {
             version: AccountInfoSync.miniProgram ? AccountInfoSync.miniProgram.version : '未获取到',
             pageRouter: pageRouter
         })
+
         wx.setStorageSync('apiRes', reqList)
         if (stagingRes && stagingRes.data && API_AUTH_STATUS.includes(stagingRes.data.code))
           return false;
+          
+        // 超过400ms 关闭Loading
         if (count <= 0 && isLoading) {
           if (poorDate < 400) {
               let timer = setTimeout(() => {
@@ -204,22 +218,22 @@ const wxAPI = {
   },
   request,
   get: (url, params = {}, isLoading = false, isData = true) => {
-    const options = Object.create({
+    const options = {
       url,
       params,
       isLoading,
       isData,
-    })
+    }
     options.method = 'GET'
     return request(options)
   },
   post: (url, params = {}, isLoading = false, isData = true) => {
-    const options = Object.create({
+    const options = {
       url,
       params,
       isLoading,
       isData,
-    })
+    }
     options.method = 'POST'
     return request(options)
   },

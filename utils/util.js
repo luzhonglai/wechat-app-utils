@@ -1,19 +1,25 @@
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: Zhonglai Lu
+ * @Date: 2020-09-04 12:37:05
+ * @LastEditors: Zhonglai Lu
+ * @LastEditTime: 2020-10-28 00:39:23
+ */
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
-
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+/**
+ * 获取页面路由
+ */
+const getRoute = () => {
+  const pages = getCurrentPages()
+  let result = ''
+  let ln = pages.length
+  if (ln > 0) {
+      return pages[ln - 1]['route']
+  }
+  return result
 }
 
 module.exports = {
-  formatTime: formatTime
+  getRoute,
 }
