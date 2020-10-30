@@ -41,8 +41,14 @@
     - timingStorage: 定时缓存 新增
     - getRouter: 获取页面路由 新增
     
-- router.js: 公共路由方法
+- router.js: 公共路由方法 -------> 支持配置路由 支持promise回调
   - switchTab: tabBar 跳转方法
   - navigateTo: 非 tabBar 跳转方法
   - redirectTo: 非 tabBar 跳转且不记录栈的方法
   - navigateBack: 非 tabBar 回退方法
+  ```
+  
+    使用方式
+      Router(type,{url}).then().catch(e)
+      let res = await Router(type,{url, params});
+  ```
