@@ -1,1 +1,74 @@
-/* pages/share-canvas/index.wxss */
+/* pages/setting/test/index.wxss */
+
+button {
+  font-size: 0;
+  line-height: normal;
+}
+
+button::after {
+  display: none;
+}
+.share-image-wrap {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+}
+.share-canvas {
+  width: 750rpx;
+  height: 800rpx;
+}
+
+.footer {
+  height: 300rpx;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 326rpx;
+  background: #ffffff;
+  border-radius: 32rpx 32rpx 0px 0px;
+}
+
+.share-title {
+  font-weight: 400;
+  font-size: 32rpx;
+  color: #000;
+  text-align: center;
+  margin: 48rpx 0;
+}
+
+.share-list {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 32rpx;
+  width: 100%;
+  align-self: center;
+  justify-content: space-around;
+}
+
+.share-list .item {
+  width: auto;
+  height: auto;
+  font-size: 24rpx;
+  color: #666666;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: #ffff;
+}
+
+.share-list .item .img {
+  width: 88rpx;
+  height: 88rpx;
+  margin-bottom: 20rpx;
+}

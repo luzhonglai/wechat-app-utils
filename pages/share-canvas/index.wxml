@@ -1,2 +1,20 @@
-<!--pages/share-canvas/index.wxml-->
-<text>pages/share-canvas/index.wxml</text>
+
+<view class="share-image-wrap">
+    <painter 
+    customStyle='width:686rpx; height:420rpx; margin:116rpx auto;'
+    palette="{{imgDraw}}"
+    bind:imgOK="onImgOK" 
+    bind:touchEnd="touchEnd" 
+    use2D="{{true}}"
+    />
+    
+    <view class="footer">
+      <view class="share-title">
+        分享至
+      </view>
+      <view class="share-list">
+        <button open-type="share" class="item" bind:tap="onShareAppMessage"><image class="img" src="/image/wechat.png"/>微信好友</button>
+        <view class="item" bind:tap="downloadImage"><image class="img" src="/image/dowload.png" />生成分享图</view>
+      </view>
+    </view>
+</view>

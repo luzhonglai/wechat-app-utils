@@ -1,8 +1,8 @@
 {
   "pages":[
+    "pages/share-canvas/index",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/share-canvas/index"
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",

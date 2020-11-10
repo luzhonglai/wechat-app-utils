@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "painter": "/components/painter/painter"
+  },
+  "navigationBarTitleText": "分享保存相片测试"
 }
