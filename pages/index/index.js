@@ -4,8 +4,9 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:37:05
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-10-28 01:19:25
+ * @LastEditTime: 2020-10-30 15:03:25
  */
+import Router from '../../utils/router'
 
 //index.js
 //获取应用实例
@@ -23,10 +24,11 @@ Page({
   bindViewTap() {
   },
   async onLoad() {
-    let res = await wxAPI.get('/api/config',{} ,true)
     
-    console.log(res)
-    console.log(wx.getStorageSync('apiRes'))
+    // let res = await wxAPI.get('/api/config',{} ,true)
+    
+    // console.log(res)
+    // console.log(wx.getStorageSync('apiRes'))
   },
   getUserInfo(e) {
     console.log(e)

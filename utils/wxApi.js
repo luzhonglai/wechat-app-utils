@@ -249,4 +249,5 @@ Object.keys(wx).forEach((key) => {
   }
 });
 
+
 export default wxAPI
