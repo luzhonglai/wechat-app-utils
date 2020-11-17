@@ -1,21 +1,21 @@
 /*
- * @Descripttion: 
- * @version: 
+ * @Descripttion:
+ * @version:
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:37:05
  * @LastEditors: Zhonglai Lu
  * @LastEditTime: 2020-10-27 22:17:48
  */
 
-//app.js
+// app.js
 import wxAPI from './utils/wxApi';
 
 App({
   wxAPI,
-  onLaunch: function () {
+  onLaunch() {
   },
   globalData: {
     userInfo: null,
-    DEBUG: false
-  }
-})
+    DEBUG: false,
+  },
+});

@@ -4,7 +4,7 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:37:05
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-11-17 16:17:08
+ * @LastEditTime: 2020-11-17 16:37:42
  */
 
 // index.js
@@ -21,12 +21,12 @@ Page({
   // 事件处理函数
   bindViewTap() {
   },
+
   async onLoad() {
+    const res = await wxAPI.get('/api/config', {}, true);
 
-    // let res = await wxAPI.get('/api/config',{} ,true)
-
-    // console.log(res)
-    // console.log(wx.getStorageSync('apiRes'))
+    console.log(res);
+    console.log(wx.getStorageSync('apiRes'));
   },
   getUserInfo(e) {
     app.globalData.userInfo = e.detail.userInfo;

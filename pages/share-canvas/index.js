@@ -7,15 +7,14 @@
  * @LastEditTime: 2020-11-10 10:49:41
  */
 
-
 // page
 
 // const api = require('../../apiservice/index')
 // const wxAPI = getApp().wxAPI
 
-let webURL = 'http://evone-test.sodoulala.com/batteryCheck/dist/batteryCheck.html#/Activate'
+const webURL = 'http://evone-test.sodoulala.com/batteryCheck/dist/batteryCheck.html#/Activate';
 
-const {wx_downloads, np_null} = require('../../utils/wxApi')
+const { wx_downloads, np_null } = require('../../utils/wxApi');
 
 Page({
   /**
@@ -27,35 +26,33 @@ Page({
       height: '646rpx',
       background: '/image/share3.png',
       borderRadius: '16rpx',
-      views:[],
-    }
+      views: [],
+    },
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options) {
-    let id = options.id || '1101'
-    
+  async onLoad(options) {
+    const id = options.id || '1101';
   },
-  
+
   // 分享
   onShareAppMessage(options) {
     return {
       title: '电动汽车电池健康度评估',
-      path:`/pages/webViewContainer/index?url=${webURL}`,
-      imageUrl: '/image/shareback.png'
-    }
+      path: `/pages/webViewContainer/index?url=${webURL}`,
+      imageUrl: '/image/shareback.png',
+    };
   },
 
   // 下载
   async downloadImage(imagPath) {
-
-    wx_downloads(this.data.imagPath)
+    wx_downloads(this.data.imagPath);
   },
 
   onImgOK(e) {
-    this.data.imagPath = e.detail.path || ''
+    this.data.imagPath = e.detail.path || '';
   },
   onShow() {},
   // appendString() {
@@ -73,4 +70,4 @@ Page({
   // clearStr() {
   //     clearLog()
   // },
-})
+});

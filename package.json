@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "webapp ",
   "repository": "https://github.com/zhonglai1996/WeChat_wxutils.git",
+  "scripts": {
+    "lint" : "eslint --fix app.js pages "
+  },
   "author": "zhonglai",
   "license": "MIT",
   "devDependencies": {
