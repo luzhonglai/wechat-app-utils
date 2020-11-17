@@ -1,4 +1,5 @@
 
 /dist
 /components
+/utils
 *.wxs

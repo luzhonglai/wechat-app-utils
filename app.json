@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/share-canvas/index",
     "pages/index/index",
+    "pages/share-canvas/index",
     "pages/logs/logs"
   ],
   "window":{
@@ -9,6 +9,9 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
+  },
+  "networkTimeout": {
+    "request": 5000
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
