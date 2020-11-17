@@ -4,5 +4,11 @@
   "description": "webapp ",
   "repository": "https://github.com/zhonglai1996/WeChat_wxutils.git",
   "author": "zhonglai",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.13.0"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.1.0"
+  }
 }
