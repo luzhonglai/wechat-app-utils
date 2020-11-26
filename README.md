@@ -52,3 +52,18 @@
       Router(type,{url}).then().catch(e)
       let res = await Router(type,{url, params});
   ```
+
+## 小程序vscode支持less框架
+> 辅助插件: minapp/wehat-snippet/wxml
+> 应用商店安装easy less
+> seting.json添加配置
+
+    ``` javascript
+    "less.compile": {
+        "compress":  false,  // 是否删除多余空白字符
+        // "sourceMap": true,  // 是否创建文件目录树，true的话会自动生成一个 .css.map 文件
+        "outExt": ".wxss" // 输出文件的后缀,默认为.css
+    }
+    ```
+
+> 创建相应.less文件编写保存后自动生成wxss文件

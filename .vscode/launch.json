@@ -1,0 +1,11 @@
+{
+  // > 辅助插件: minapp/wehat-snippet/wxml
+  // > 应用商店安装easy less
+  // > seting.json添加配置
+
+  "less.compile": {
+    "compress": false, // 是否删除多余空白字符
+    // "sourceMap": true,  // 是否创建文件目录树，true的话会自动生成一个 .css.map 文件
+    "outExt": ".wxss" // 输出文件的后缀,默认为.css
+  }
+}
