@@ -4,14 +4,14 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-12-14 16:53:33
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-12-14 16:54:21
+ * @LastEditTime: 2020-12-15 10:59:12
  */
 
 /**
  * 项目根配置
  */
 module.exports = {
-  name: '小程序插件',
+  name: '小程序配置',
   // 本地服务配置
   server: {
     port: 8088, // 服务的端口
