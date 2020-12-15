@@ -4,7 +4,7 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-12-14 16:49:27
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-12-15 15:34:09
+ * @LastEditTime: 2020-12-15 16:40:10
  */
 
 'use script';
@@ -17,7 +17,7 @@ const config = require('../common/config');
 const app = new express();
 const serverConfig = config.server;
 
-app.use(serverConfig.imgPath, express.static(path.resolve(__dirname, '../image')));
+app.use(serverConfig.imgPath, express.static(path.resolve(__dirname, '../assets/images')));
 
 app.listen(serverConfig.port, (err) => {
   if (err) throw err;

@@ -4,7 +4,7 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-12-14 16:50:46
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-12-15 15:34:19
+ * @LastEditTime: 2020-12-15 17:01:56
  */
 
 /**
@@ -19,4 +19,4 @@ const config = require('../common/config');
 
 const cfgs = config.app.fundebug;
 
-fs.writeFileSync(path.resolve(__dirname, '../os.js'), `module.exports=${JSON.stringify(cfgs)}`);
+fs.writeFileSync(path.resolve(__dirname, '../os'), `module.exports=${JSON.stringify(cfgs)}`);
