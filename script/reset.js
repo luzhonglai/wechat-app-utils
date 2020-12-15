@@ -1,19 +1,22 @@
 /*
- * @Descripttion: 
- * @version: 
+ * @Descripttion:
+ * @version:
  * @Author: Zhonglai Lu
  * @Date: 2020-12-14 16:50:46
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-12-14 16:54:56
+ * @LastEditTime: 2020-12-15 15:34:19
  */
 
- /**
+/**
  * 设置项目为生成环境
  */
-const config = require('config');
+
+'use script';
+
 const fs = require('fs');
 const path = require('path');
+const config = require('../common/config');
 
-const cfgs = config.get('app');
+const cfgs = config.app.fundebug;
 
-fs.writeFileSync(path.resolve(__dirname, '../os.js'), 'module.exports=' + JSON.stringify(cfgs));
+fs.writeFileSync(path.resolve(__dirname, '../os.js'), `module.exports=${JSON.stringify(cfgs)}`);
