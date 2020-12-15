@@ -4,7 +4,7 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-11-18 14:53:27
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-12-15 15:25:04
+ * @LastEditTime: 2020-12-15 16:01:20
  */
 
 'use script';
@@ -39,7 +39,7 @@ readDir(path.resolve(__dirname, '../pages'));
 const startDate = Date.now();
 fileArr.forEach((item) => {
   const file = fs.readFileSync(item, 'utf8');
-  const newFile = file.replace('/image/', 'http:127.0.0.1:8088/assets/wechat_app/');
+  const newFile = file.replace('/assets/image/', 'http:127.0.0.1:8088/assets/wechat_app/');
   fs.writeFileSync(item, newFile, 'utf8');
 });
 const poorDate = Date.now() - startDate;
