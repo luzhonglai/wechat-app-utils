@@ -4,13 +4,14 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-11-18 14:53:27
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-12-15 15:25:04
+ * @LastEditTime: 2020-12-15 17:00:06
  */
 
 'use script';
 
 const path = require('path');
 const fs = require('fs');
+const { server } = require('../common/config');
 
 const fileArr = [];
 
@@ -36,12 +37,14 @@ const readDir = (entry) => {
 // 需要替换的文件目录
 readDir(path.resolve(__dirname, '../pages'));
 // readDir(path.resolve(__dirname, '../components'));
+
 const startDate = Date.now();
 fileArr.forEach((item) => {
   const file = fs.readFileSync(item, 'utf8');
-  const newFile = file.replace('/image/', 'http:127.0.0.1:8088/assets/wechat_app/');
+  const newFile = file.replace(server.imgDev, server.imgHost);
   fs.writeFileSync(item, newFile, 'utf8');
 });
 const poorDate = Date.now() - startDate;
+
 // eslint-disable-next-line no-console
 console.log(`文件总数: ${fileArr.length} 替换时间: ${poorDate} ms`);

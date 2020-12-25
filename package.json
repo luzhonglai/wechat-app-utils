@@ -7,7 +7,7 @@
     "lint": "eslint --fix app.js pages ",
     "reset": "node script/reset",
     "build": "node script/replace",
-    "dev": "node script/index"
+    "dev": "nodemon script/index"
   },
   "author": "zhonglai lu",
   "license": "ISC",
