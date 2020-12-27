@@ -1116,6 +1116,11 @@ minimist@^1.2.0, minimist@^1.2.5:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
+miniprogram-api-typings@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/miniprogram-api-typings/-/miniprogram-api-typings-3.2.0.tgz#5ba1225393167e242039e4131c343b5a688aea80"
+  integrity sha512-6A4UX9nCvJolPrgqZ0MIg2+3ZuROi1ExN+JcI0/R1SLroU3R3mjsg+hRkz4RWShYsumMsqmiicP7U4yeXICxiw==
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -1694,6 +1699,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+wechat-api-promise@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/wechat-api-promise/-/wechat-api-promise-1.2.3.tgz#d61e8d8fd2b4db88b7b83c7d6544e207c4126f77"
+  integrity sha512-4VSH6Ndt9Upq5fmehfh8DU3AAy0XT7TFs7q+QtJFh7w5AZSAmld4YvLHLyiLAB84gY1qJ0woobx3Z9KhQwz7fg==
 
 which@^2.0.1:
   version "2.0.2"

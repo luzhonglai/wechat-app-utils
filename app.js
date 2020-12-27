@@ -4,16 +4,15 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:37:05
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-10-27 22:17:48
+ * @LastEditTime: 2020-12-27 11:41:05
  */
 
 // app.js
-import wxAPI from './utils/wxApi';
+import { promiseAll } from 'wechat-api-promise';
 
 App({
-  wxAPI,
-  onLaunch() {
-  },
+  wxAPI: promiseAll(wx, {}),
+  onLaunch() {},
   globalData: {
     userInfo: null,
     DEBUG: false,

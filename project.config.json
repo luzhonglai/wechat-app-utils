@@ -1,10 +1,12 @@
 {
   "description": "项目配置文件",
   "packOptions": {
-    "ignore": [{
-      "type": "folder",
-      "value": "assets/images"
-    }]
+    "ignore": [
+      {
+        "type": "folder",
+        "value": "assets/images"
+      }
+    ]
   },
   "setting": {
     "urlCheck": false,
