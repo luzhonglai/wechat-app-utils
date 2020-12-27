@@ -7,7 +7,7 @@
     "lint": "eslint --fix app.js pages ",
     "reset": "node script/reset",
     "build": "node script/replace",
-    "dev": "node script/index"
+    "dev": "nodemon script/index"
   },
   "author": "zhonglai lu",
   "license": "ISC",
@@ -22,7 +22,9 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "ftp": "^0.3.10",
+    "miniprogram-api-typings": "^3.2.0",
     "os": "^0.1.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "wechat-api-promise": "^1.2.3"
   }
 }
