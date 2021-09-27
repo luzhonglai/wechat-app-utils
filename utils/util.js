@@ -1,12 +1,11 @@
 /*
- * @Descripttion: 
- * @version: 
+ * @Descripttion:
+ * @version:
  * @Author: Zhonglai Lu
  * @Date: 2020-09-04 12:37:05
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-11-10 17:42:28
+ * @LastEditTime: 2021-09-24 22:28:54
  */
-
 
 /**
  * 获取页面路由
@@ -16,11 +15,10 @@ const getRoute = () => {
   let result = ''
   let ln = pages.length
   if (ln > 0) {
-      return pages[ln - 1]['route']
+    return pages[ln - 1]['route']
   }
   return result
 }
-
 
 /**
  * 定时存储storage
@@ -32,25 +30,25 @@ function timingStorage(key, value = '', expiration = 172800000) {
   let timestamp = Date.parse(new Date())
   //赋值
   if (key && value) {
-      wx.setStorageSync(key, value)
-      wx.setStorageSync(key + 'Expiration', timestamp + expiration)
+    wx.setStorageSync(key, value)
+    wx.setStorageSync(key + 'Expiration', timestamp + expiration)
   } else {
-      //过期 清空
-      let timestampExpiration = wx.getStorageSync(key + 'Expiration')
-      if (timestampExpiration < timestamp) {
-          wx.removeStorageSync(key)
-          wx.removeStorageSync(key + 'Expiration')
-          return ''
-      } else {
-          return wx.getStorageSync(key)
-      }
+    //过期 清空
+    let timestampExpiration = wx.getStorageSync(key + 'Expiration')
+    if (timestampExpiration < timestamp) {
+      wx.removeStorageSync(key)
+      wx.removeStorageSync(key + 'Expiration')
+      return ''
+    } else {
+      return wx.getStorageSync(key)
+    }
   }
 }
 
 /**
  * 定时存储storage
  * @param {*} path 图片路径
- * 
+ *
  */
 const wx_downloads = async (path) => {
   let imagPath = path || ''
@@ -103,5 +101,5 @@ const wx_downloads = async (path) => {
 module.exports = {
   getRoute,
   timingStorage,
-  wx_downloads
+  wx_downloads,
 }

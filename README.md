@@ -4,7 +4,7 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-09-02 16:13:52
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2021-05-13 17:22:46
+ * @LastEditTime: 2021-09-27 10:20:20
 -->
 
 # Wechat_app 常用工具
@@ -13,7 +13,7 @@
 
 - wx.js: 常用微信方法 改造内置API
 
-  - wxAPI 重写 wx-API 支持 Promise 回调 
+  - wxAPI 重写 wx-API 支持 Promise 回调
     - backSetData: 返回上级界面传值/调用方法
 
 ```js
