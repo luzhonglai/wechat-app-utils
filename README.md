@@ -16,6 +16,7 @@
   - wxAPI 重写 wx-API 支持 Promise 回调
     - backSetData: 返回上级界面传值/调用方法
 
+
 ```js
   // 使用方法
   const wxAPI = getAPP().wxAPI;
