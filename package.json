@@ -4,7 +4,7 @@
   "description": "webapp ",
   "repository": "https://github.com/luzhonglai/WeChat_wxutils.git",
   "scripts": {
-    "lint": "eslint --fix app.js pages ",
+    "lint": "eslint --fix app.js  ",
     "reset": "node script/reset",
     "build": "node script/replace",
     "dev": "nodemon script/index"

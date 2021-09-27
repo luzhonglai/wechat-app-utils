@@ -1,12 +1,3 @@
-/*
- * @Descripttion:
- * @version:
- * @Author: Zhonglai Lu
- * @Date: 2020-12-14 16:53:33
- * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-12-15 16:59:08
- */
-
 /**
  * 项目根配置
  */

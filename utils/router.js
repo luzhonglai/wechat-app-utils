@@ -3,13 +3,10 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-10-27 21:17:26
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-10-30 16:01:07
+ * @LastEditTime: 2021-09-24 22:41:11
  */
 import  wxAPI from './wxApi'
 
-
-
- console.log(wxAPI)
 
 /**
  * 参数拼接
@@ -64,16 +61,3 @@ export function Router(type = '', options) {
   }
   return wxAPI[type]()
 }
-
-
-
-// ---------------测试函数-------------
-// Router('redirectTo',{url:''}).then(res=>{
-//   console.log(111)
-// }).catch(error => {
-//   console.log(222)
-//   console.log(error)
-// })
-
-
-// Router('redirectTo')
