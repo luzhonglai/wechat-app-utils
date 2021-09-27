@@ -2,14 +2,14 @@
   "name": "wechat_app",
   "version": "1.0.0",
   "description": "webapp ",
-  "repository": "https://github.com/zhonglai1996/WeChat_wxutils.git",
+  "repository": "https://github.com/luzhonglai/WeChat_wxutils.git",
   "scripts": {
     "lint": "eslint --fix app.js pages ",
     "reset": "node script/reset",
     "build": "node script/replace",
-    "dev": "node script/index"
+    "dev": "nodemon script/index"
   },
-  "author": "zhonglai",
+  "author": "zhonglai lu",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.13.0"
@@ -21,6 +21,10 @@
     "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "ftp": "^0.3.10",
+    "miniprogram-api-typings": "^3.2.0",
+    "os": "^0.1.1",
+    "path": "^0.12.7",
+    "wechat-api-promise": "^1.2.3"
   }
 }

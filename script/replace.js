@@ -1,43 +1,50 @@
 /*
- * @Descripttion:
- * @version:
+ * @Descripttion:  替换本地图片服务
+ * @version: 1.0.0
  * @Author: Zhonglai Lu
  * @Date: 2020-11-18 14:53:27
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-12-14 16:41:26
+ * @LastEditTime: 2020-12-15 17:00:06
  */
 
-const path = require('path')
-const fs = require('fs')
+'use script';
 
-let fileArr = []
-let defalutTyle = ['.js','.wxss']
+const path = require('path');
+const fs = require('fs');
+const { server } = require('../common/config');
+
+const fileArr = [];
+
+const defalutTyle = ['.js', '.wxss', '.wxml'];
+
 const readDir = (entry) => {
-  const dirents = function (fileName) {
-    let sourcePath = path.join(entry, fileName)
-    let reddir =  fs.readdirSync(sourcePath, {
-      encoding: 'utf8',
-      withFileTypes: true,
-    })
-    reddir.forEach(item => {
+  const dirents = function (entry) {
+    const dirInfo = fs.readdirSync(entry);
+    dirInfo.forEach((item) => {
       // true 存在子目录
-      if(item.isDirectory()) {
-        dirents(item.name)
-        return 
+      const sourcePath = path.join(entry, item);
+      const info = fs.statSync(sourcePath);
+      if (info.isDirectory()) {
+        dirents(sourcePath);
+        return;
       }
-      console.log(path.join(entry,item.name))
-      if (defalutTyle.includes(path.extname(item.name))) fileArr.push(item.name)
+      if (defalutTyle.includes(path.extname(sourcePath))) fileArr.push(sourcePath);
     });
-  }
-  return dirents(entry)
-}
+  };
+  return dirents(entry);
+};
 
-readDir(path.resolve(__dirname, '../pages'))
-readDir(path.resolve(__dirname, '../components'))
+// 需要替换的文件目录
+readDir(path.resolve(__dirname, '../pages'));
+// readDir(path.resolve(__dirname, '../components'));
 
-
+const startDate = Date.now();
 fileArr.forEach((item) => {
-  let file = fs.readFileSync(item, 'utf8')
-  let newFile = file.replace(/^http\:\/\/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\:8088$/g, 'https://daawaww.com')
-  fs.writeFileSync(item, newFile, 'utf8')
-})
+  const file = fs.readFileSync(item, 'utf8');
+  const newFile = file.replace(server.imgDev, server.imgHost);
+  fs.writeFileSync(item, newFile, 'utf8');
+});
+const poorDate = Date.now() - startDate;
+
+// eslint-disable-next-line no-console
+console.log(`文件总数: ${fileArr.length} 替换时间: ${poorDate} ms`);

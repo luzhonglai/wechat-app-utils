@@ -2,4 +2,6 @@
 /dist
 /components
 /utils
+/pages
+# /script
 *.wxs

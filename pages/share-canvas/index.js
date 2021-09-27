@@ -4,7 +4,7 @@
  * @Author: Zhonglai Lu
  * @Date: 2020-11-03 14:34:18
  * @LastEditors: Zhonglai Lu
- * @LastEditTime: 2020-11-10 10:49:41
+ * @LastEditTime: 2020-12-15 16:02:33
  */
 
 // page
@@ -24,7 +24,7 @@ Page({
     imgDraw: {
       width: '686rpx',
       height: '646rpx',
-      background: '/image/share3.png',
+      background: '/assets/images/share3.png',
       borderRadius: '16rpx',
       views: [],
     },
@@ -42,7 +42,7 @@ Page({
     return {
       title: '电动汽车电池健康度评估',
       path: `/pages/webViewContainer/index?url=${webURL}`,
-      imageUrl: '/image/shareback.png',
+      imageUrl: '/assets/images/shareback.png',
     };
   },
 
