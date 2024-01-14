@@ -12,9 +12,10 @@
 // const api = require('../../apiservice/index')
 // const wxAPI = getApp().wxAPI
 
-const webURL = 'http://evone-test.sodoulala.com/batteryCheck/dist/batteryCheck.html#/Activate';
+const webURL =
+  "http://evone-test.sodoulala.com/batteryCheck/dist/batteryCheck.html#/Activate";
 
-const { wx_downloads, np_null } = require('../../utils/wxApi');
+const { wx_downloads, np_null } = require("../../utils/wxApi");
 
 Page({
   /**
@@ -22,10 +23,10 @@ Page({
    */
   data: {
     imgDraw: {
-      width: '686rpx',
-      height: '646rpx',
-      background: '/assets/images/share3.png',
-      borderRadius: '16rpx',
+      width: "686rpx",
+      height: "646rpx",
+      background: "http:127.0.0.1:8088/assets/wechat_app//share3.png",
+      borderRadius: "16rpx",
       views: [],
     },
   },
@@ -34,15 +35,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    const id = options.id || '1101';
+    const id = options.id || "1101";
   },
 
   // 分享
   onShareAppMessage(options) {
     return {
-      title: '电动汽车电池健康度评估',
+      title: "电动汽车电池健康度评估",
       path: `/pages/webViewContainer/index?url=${webURL}`,
-      imageUrl: '/assets/images/shareback.png',
+      imageUrl: "http:127.0.0.1:8088/assets/wechat_app/shareback.png",
     };
   },
 
@@ -52,7 +53,7 @@ Page({
   },
 
   onImgOK(e) {
-    this.data.imagPath = e.detail.path || '';
+    this.data.imagPath = e.detail.path || "";
   },
   onShow() {},
   // appendString() {

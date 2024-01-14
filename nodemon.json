@@ -1,4 +1,4 @@
 {
-  "watch":["script/","images/"],
+  "watch": ["script/", "images/"],
   "ext": "js,json,png,jpg,gif,jpeg"
 }

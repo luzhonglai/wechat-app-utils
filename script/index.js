@@ -7,17 +7,20 @@
  * @LastEditTime: 2021-09-24 22:32:44
  */
 
-'use script';
+"use script";
 
-const express = require('express');
-const path = require('path');
-const config = require('../common/config');
+const express = require("express");
+const path = require("path");
+const config = require("../common/config");
 
 // eslint-disable-next-line new-cap
 const app = new express();
 const serverConfig = config.server;
 
-app.use(serverConfig.imgPath, express.static(path.resolve(__dirname, '../assets/images')));
+app.use(
+  serverConfig.imgPath,
+  express.static(path.resolve(__dirname, "../assets/images"))
+);
 
 app.listen(serverConfig.port, (err) => {
   if (err) throw err;

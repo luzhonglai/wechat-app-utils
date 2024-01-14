@@ -11,12 +11,15 @@
  * 设置项目为生成环境
  */
 
-'use script';
+"use script";
 
-const fs = require('fs');
-const path = require('path');
-const config = require('../common/config');
+const fs = require("fs");
+const path = require("path");
+const config = require("../common/config");
 
 const cfgs = config.app.fundebug;
 
-fs.writeFileSync(path.resolve(__dirname, '../os'), `module.exports=${JSON.stringify(cfgs)}`);
+fs.writeFileSync(
+  path.resolve(__dirname, "../os"),
+  `module.exports=${JSON.stringify(cfgs)}`
+);
